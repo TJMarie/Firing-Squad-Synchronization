@@ -143,6 +143,7 @@ class Transitions:
             next_state = "Q"
         
         print("(", cell, ",", cell_right, ") =>", next_state)
+
         return next_state
 
     def rightmost_transition(self, cell, cell_left):
@@ -154,16 +155,34 @@ class Transitions:
             next_state = "Q"
         
         print("(", cell_left, ",", cell, ") =>", next_state)
+
         return next_state
     
     def middle_transition(self, cell_left, cell, cell_right):
         """ Transition Rules: Dict{List(String): String} """
         print("Middle Transition")
-        rule = cell_left + ", " + cell_right
+        rule = f"({cell_left}, {cell})"
         print(rule)
 
+        if cell == "Q":
+            transition_rules = self.q_rules()
+        elif cell == "R":
+            transition_rules = self.r_rules()
+        elif cell == "A":
+            transition_rules = self.a_rules()
+        elif cell == "B":
+            transition_rules = self.b_rules()
+        elif cell == "P":
+            transition_rules = self.p_rules()
+        elif cell == "T":
+            self.check_final()
+            # Add code to start next run if all cells fire
+        else:
+            print("Unknown State:", cell)
+
+        print(transition_rules)
+
         return "Q"
-        
 
     def make_transition(self):
         """ next_states --> List(String)
@@ -192,9 +211,14 @@ class Transitions:
         self.current_states = self.next_states
     
     def check_final(self):
-        # False if the cell fired early, True if all cells fire simultaneously
+        """Return False if cell fired early, True if all cells fire simultaneously"""
         print("Checking Finality")
-        return False if (state != "T" for state in self.next_states) else True
+        if (state != "T" for state in self.next_states):
+            print("Cell fired early. Quitting now.")
+            quit() 
+        else:
+            print("All cells fired simultaneouly")
+            return True
 
     def run(self):
         self.give_fire_command()
