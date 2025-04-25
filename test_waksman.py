@@ -137,12 +137,14 @@ class Transitions:
         print(self.current_states)
     
     def leftmost_transition(self, cell, cell_right):
+        rule = f"({cell}, {cell_right})"
+
         if cell_right == "P":
-            next_state = "Q"
+            next_state = "T"
         else:
-            next_state = "Q"
+            next_state = "P"
         
-        print("(", cell, ",", cell_right, ") =>", next_state)
+        print(rule, "=>", next_state)
 
         return next_state
 
