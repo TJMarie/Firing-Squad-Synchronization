@@ -1,5 +1,7 @@
 # Source: https://cs.stanford.edu/people/eroberts/courses/soco/projects/2004-05/automata-theory/problem.html
 
+import copy
+
 class Transitions:
     """ Transition Functions
         Q --> Quiescent State
@@ -18,7 +20,7 @@ class Transitions:
     def __init__(self, current_states):
         """ current_states --> List(String) """
         self.current_states = current_states
-        self.next_states = current_states
+        self.next_states = copy.deepcopy(current_states)
         self.num_states = len(current_states)
 
     def q_rules(self):
@@ -177,6 +179,7 @@ class Transitions:
         elif cell == "P":
             transition_rules = self.p_rules()
         elif cell == "T":
+            #  If one cell reaches the final state, check if every cell is firing 
             self.check_final()
             # Add code to start next run if all cells fire
         else:
@@ -201,7 +204,7 @@ class Transitions:
         """ next_states --> List(String)
             Create list of next states for all cells """
 
-        #  Set leftmost and rightmost cells first
+        #  Set leftmost state first
         self.next_states[0] = self.leftmost_transition(self.current_states[0], self.current_states[1])
 
 
@@ -212,10 +215,9 @@ class Transitions:
             cell = self.current_states[i]
             cell_right = self.current_states[i + 1]
             next_state = self.middle_transition(cell_left, cell, cell_right)
-            if next_state == "T": 
-                #  If one cell reaches the final state, check if every cell is firing 
-                self.check_final(self.next_states)
+            self.next_states[i] = next_state
         
+        # Set rightmost state last
         self.next_states[-1] = self.rightmost_transition(self.current_states[-2], self.current_states[-1])
 
         print("Current States:", self.current_states)
@@ -235,6 +237,8 @@ class Transitions:
 
     def run(self):
         self.give_fire_command()
+
+        print(f"Current States:\n{self.current_states}\nNext States:\n{self.next_states}")
 
         print("\nRun ")
 
