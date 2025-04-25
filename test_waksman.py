@@ -1,3 +1,5 @@
+# Source: https://cs.stanford.edu/people/eroberts/courses/soco/projects/2004-05/automata-theory/problem.html
+
 class Transitions:
     """ Transition Functions
         Q --> Quiescent State
