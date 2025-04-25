@@ -163,7 +163,7 @@ class Transitions:
     def middle_transition(self, cell_left, cell, cell_right):
         """ Transition Rules: Dict{List(String): String} """
         print("Middle Transition")
-        rule = f"({cell_left}, {cell})"
+        rule = f"{cell_left}, {cell_right}"
         print(rule)
 
         if cell == "Q":
@@ -184,7 +184,18 @@ class Transitions:
 
         print(transition_rules)
 
-        return "Q"
+        next_state = False
+
+        for key, value in transition_rules.items():
+            if rule in key:
+                next_state = value
+
+        if next_state == False:
+            print(f"Error: Could not find rule ({rule})")
+            quit()
+
+        print(rule, "=>", next_state)
+        return next_state
 
     def make_transition(self):
         """ next_states --> List(String)
