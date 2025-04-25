@@ -99,7 +99,7 @@ class Transitions:
             "P, A", 
             "A, P",
             "Q, P",
-            "P, A",
+            "P, Q",
             "R, Q",
             "B, Q",
             "Q, B",
@@ -162,11 +162,13 @@ class Transitions:
 
         return next_state
     
-    def middle_transition(self, cell_left, cell, cell_right):
+    def middle_transition(self, cell_left, cell, cell_right, index):
         """ Transition Rules: Dict{List(String): String} """
-        print("Middle Transition")
+
+        print("\n\nMiddle Transition")
         rule = f"{cell_left}, {cell_right}"
-        print(rule)
+        print("Current State:", cell, index)
+        print("Rule", rule)
 
         if cell == "Q":
             transition_rules = self.q_rules()
@@ -185,10 +187,11 @@ class Transitions:
         else:
             print("Unknown State:", cell)
 
-        print(transition_rules)
+        # print(transition_rules)
 
         next_state = False
 
+        # Add code to check if rule occurs in more than one key
         for key, value in transition_rules.items():
             if rule in key:
                 next_state = value
@@ -214,7 +217,7 @@ class Transitions:
             cell_left = self.current_states[i - 1]
             cell = self.current_states[i]
             cell_right = self.current_states[i + 1]
-            next_state = self.middle_transition(cell_left, cell, cell_right)
+            next_state = self.middle_transition(cell_left, cell, cell_right, i)
             self.next_states[i] = next_state
         
         # Set rightmost state last
@@ -242,7 +245,12 @@ class Transitions:
 
         print("\nRun ")
 
-        self.make_transition()
+        i = 1
+
+        while i < 3:  # Fix
+            print("\n\nStep", i)
+            self.make_transition()
+            i += 1
 
 def __main__():
     """ current_states --> List() """
