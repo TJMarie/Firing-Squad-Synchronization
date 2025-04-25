@@ -19,7 +19,7 @@ class Transitions:
 
     def __init__(self, current_states):
         """ current_states --> List(String) """
-        self.current_states = current_states
+        self.current_states = copy.deepcopy(current_states)
         self.next_states = copy.deepcopy(current_states)
         self.num_states = len(current_states)
 
@@ -146,7 +146,7 @@ class Transitions:
         else:
             next_state = "P"
         
-        print(rule, "=>", next_state)
+        print(f"Leftmost transition:\nCurrent State: {cell}\t{rule} => {next_state}")
 
         return next_state
 
@@ -158,17 +158,17 @@ class Transitions:
         else:
             next_state = "Q"
         
-        print("(", cell_left, ",", cell, ") =>", next_state)
+        print(f"Rightmost transition:\nCurrent State: {cell}\t({cell_left}, {cell}) => {next_state}")
 
         return next_state
     
     def middle_transition(self, cell_left, cell, cell_right, index):
         """ Transition Rules: Dict{List(String): String} """
 
-        print("\n\nMiddle Transition")
+        print("\nMiddle Transition")
         rule = f"{cell_left}, {cell_right}"
-        print("Current State:", cell, index)
-        print("Rule", rule)
+        print(f"Current State:\t{cell}\t{str(index + 1)}")
+        print("Rule:\t"+ rule)
 
         if cell == "Q":
             transition_rules = self.q_rules()
@@ -226,7 +226,7 @@ class Transitions:
         print("Current States:", self.current_states)
         print("Next States:", self.next_states)
 
-        self.current_states = self.next_states
+        self.current_states = copy.deepcopy(self.next_states)
     
     def check_final(self):
         """Return False if cell fired early, True if all cells fire simultaneously"""
