@@ -161,6 +161,9 @@ class Transitions:
             # "Q, R",
             "R, P"
         )
+        b_to_r1 = (
+            "R1, P"
+        )
         b_to_p = (
             "P, P",
             "B, A1",
@@ -175,7 +178,7 @@ class Transitions:
         b_to_a0 = (
             "Q, A0" # TEST
         )
-        b_transition_rules = {b_to_b: "B", b_to_r: "R", b_to_p: "P", b_to_q: "Q", b_to_a0: "A0"}
+        b_transition_rules = {b_to_b: "B", b_to_r: "R", b_to_r1: "R1", b_to_p: "P", b_to_q: "Q", b_to_a0: "A0"}
 
         return b_transition_rules
     
