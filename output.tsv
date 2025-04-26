@@ -11,6 +11,4 @@
 11	P	B	Q	R	B	Q	Q	R	Q	A0	P	
 12	P	B	R	Q	B	Q	R	Q	A0	B	P	
 13	P	R	B	Q	B	R	Q	A0	Q	B	P	
-14	P	B	B	Q	R	B	A0	Q	R	B	P	
-15	P	B	B	R	Q	P	Q	Q	Q	R	P	
-16	P	B	Q	B	A0	P	A1	Q	R	B	P	
+14	P	B	B	Q	R	B	A0	Q	R1	B	P	

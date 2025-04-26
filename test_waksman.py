@@ -34,7 +34,9 @@ class Transitions:
             "A0, R", #
             "B, Q",
             "Q, B",
-            "B, B"
+            "B, B",
+            "A0, R1",
+            "A0, R1"  #
             )
         q_to_r = (
             "B, A1",
@@ -43,6 +45,9 @@ class Transitions:
             "Q, R",
             "A0, B"
             )
+        q_to_r1 = (
+            "A0, B"
+        )
         q_to_a = (
             "P, Q",
             "Q, P",
@@ -60,7 +65,7 @@ class Transitions:
         q_to_p = (
             "B, A0"  # TEST
         )
-        q_transition_rules = {q_to_q: "Q", q_to_r: "R", q_to_a: "A1", q_to_a0: "A0", q_to_p: "P"}
+        q_transition_rules = {q_to_q: "Q", q_to_r: "R", q_to_r1: "R1", q_to_a: "A1", q_to_a0: "A0", q_to_p: "P"}
 
         return q_transition_rules
     
@@ -82,6 +87,15 @@ class Transitions:
         r_transition_rules = {r_to_q: "Q", r_to_b: "B"}
 
         return r_transition_rules
+    
+    def r1_rules(self):
+        r1_to_b = (
+            "Q, B",
+            "A0, P"
+        )
+        r1_transition_rules = {r1_to_b: "B"}
+
+        return r1_transition_rules
     
     def a_rules(self):
         a_to_q = (
@@ -238,6 +252,7 @@ class Transitions:
             # Add code to start next run if all cells fire
         else:
             print("Unknown State:", cell)
+            self.output()
 
         # print(transition_rules)
 
@@ -250,9 +265,7 @@ class Transitions:
 
         if next_state == False:
             print(f"Error: Could not find rule ({rule})")
-            print(self.chart)
             self.output()
-            quit()
 
         print(rule, "=>", next_state)
         return next_state
@@ -313,8 +326,10 @@ class Transitions:
             i += 1
 
     def output(self):
+        print(self.chart)
         output_file = open("output.tsv", "w")
         output_file.write(self.chart)
+        quit()
 
 def __main__():
     """ current_states --> List() """
