@@ -353,7 +353,7 @@ class Transitions:
 def __main__():
     """ current_states --> List() """
     print("Starting Program")
-    num_cells = 11
+    num_cells = 12
     current_states = ["Q" for i in range(num_cells)]
 
     print("Starting states:", current_states)
