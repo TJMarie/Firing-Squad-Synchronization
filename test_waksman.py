@@ -22,6 +22,7 @@ class Transitions:
         self.current_states = copy.deepcopy(current_states)
         self.next_states = copy.deepcopy(current_states)
         self.num_states = len(current_states)
+        self.chart = ""
 
     def q_rules(self):
         q_to_q = (
@@ -218,6 +219,7 @@ class Transitions:
 
         if next_state == False:
             print(f"Error: Could not find rule ({rule})")
+            print(self.chart)
             quit()
 
         print(rule, "=>", next_state)
@@ -270,6 +272,12 @@ class Transitions:
         while True:  # Fix
             print("\n\nStep", i)
             self.make_transition()
+
+            row = ""
+            for state in self.next_states:
+                row += f"{state}\t"
+
+            self.chart += f"{str(i)}\t{row}\n"
             i += 1
 
 def __main__():
