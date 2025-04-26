@@ -21,7 +21,7 @@ class Transitions:
         """ current_states --> List(String) """
         self.current_states = copy.deepcopy(current_states)
         self.next_states = copy.deepcopy(current_states)
-        self.num_states = len(current_states)
+        self.num_cells = len(current_states)
         self.chart = ""
 
     def q_rules(self):
@@ -289,9 +289,9 @@ class Transitions:
         self.next_states[0] = self.leftmost_transition(self.current_states[0], self.current_states[1])
 
 
-        print("Number of loops", str(self.num_states - 2))
+        print("Number of loops", str(self.num_cells - 2))
         
-        for i in range(1, self.num_states - 1):
+        for i in range(1, self.num_cells - 1):
             cell_left = self.current_states[i - 1]
             cell = self.current_states[i]
             cell_right = self.current_states[i + 1]
@@ -346,7 +346,7 @@ class Transitions:
 
     def output(self):
         print(self.chart)
-        file_name = f"output{self.num_states}.tsv"
+        file_name = f"output{self.num_cells}.tsv"
         print(f"Outputting to {file_name}")
         output_file = open(file_name, "w")
         output_file.write(self.chart)
