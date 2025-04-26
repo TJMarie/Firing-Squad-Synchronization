@@ -346,14 +346,16 @@ class Transitions:
 
     def output(self):
         print(self.chart)
-        output_file = open("output.tsv", "w")
+        file_name = f"output{self.num_states}.tsv"
+        print(f"Outputting to {file_name}")
+        output_file = open(file_name, "w")
         output_file.write(self.chart)
         quit()
 
 def __main__():
     """ current_states --> List() """
     print("Starting Program")
-    num_cells = 12
+    num_cells = 11
     current_states = ["Q" for i in range(num_cells)]
 
     print("Starting states:", current_states)
