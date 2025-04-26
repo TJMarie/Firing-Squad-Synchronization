@@ -158,7 +158,7 @@ class Transitions:
         )
         b_to_r = (
             "P, R",
-            "Q, R",
+            # "Q, R",
             "R, P"
         )
         b_to_p = (
@@ -169,7 +169,8 @@ class Transitions:
             "A1, P"  # TEST
         )
         b_to_q = (
-            "B, R"
+            "B, R",
+            "Q, R"
         )
         b_to_a0 = (
             "Q, A0" # TEST
@@ -238,6 +239,8 @@ class Transitions:
             transition_rules = self.q_rules()
         elif cell == "R":
             transition_rules = self.r_rules()
+        elif cell == "R1":
+            transition_rules = self.r1_rules()
         elif cell == "A1":
             transition_rules = self.a_rules()
         elif cell == "A0":
