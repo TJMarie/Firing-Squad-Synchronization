@@ -29,8 +29,8 @@ class Transitions:
             "R, Q",
             "Q, R",
             "R, B",
-            "R, A",
-            "A, R",
+            # "R, A",
+            "A0, R",
             "B, Q",
             "Q, B",
             "B, B"
@@ -46,12 +46,16 @@ class Transitions:
             "P, Q",
             "Q, P",
             "A, Q",
-            "B, A",
-            "A, B",
+            # "B, A",
+            # "A, B",
             "R, A",
             "R, P"
         )
-        q_transition_rules = {q_to_q: "Q", q_to_r: "R", q_to_a: "A"}
+        q_to_a0 = (
+            "R, P",
+            "R, A0"
+        )
+        q_transition_rules = {q_to_q: "Q", q_to_r: "R", q_to_a: "A", q_to_a0: "A0"}
 
         return q_transition_rules
     
@@ -94,6 +98,23 @@ class Transitions:
 
         return a_transition_rules
     
+    def a0_rules(self):
+        a0_to_q = (
+            "Q, B",
+            "B, Q",
+            "Q, Q",
+            "A, B",
+        )
+        a0_to_b = (
+            "Q, P"
+        )
+        ao_to_p = (
+            "R, B"
+        )
+        a0_transition_rules = {a0_to_q: "Q", a0_to_b: "b", ao_to_p: "p"}
+
+        return a0_transition_rules
+    
     def b_rules(self):
         b_to_b = (
             "P, A", 
@@ -108,12 +129,9 @@ class Transitions:
             "Q, Q"
         )
         b_to_r = (
-            "B, Q",
-            "P, B",
-            "Q, B",
-            "B, P",
-            "P, A",
-            "A, P"
+            "P, R",
+            "Q, R",
+            "R, P"
         )
         b_to_p = (
             "P, P",
@@ -158,7 +176,7 @@ class Transitions:
         else:
             next_state = "Q"
         
-        print(f"Rightmost transition:\nCurrent State: {cell}\t({cell_left}, {cell}) => {next_state}")
+        print(f"\nRightmost transition:\nCurrent State: {cell}\t({cell_left}, {cell}) => {next_state}")
 
         return next_state
     
@@ -176,6 +194,8 @@ class Transitions:
             transition_rules = self.r_rules()
         elif cell == "A":
             transition_rules = self.a_rules()
+        elif cell == "A0":
+            transition_rules = self.a0_rules()
         elif cell == "B":
             transition_rules = self.b_rules()
         elif cell == "P":
@@ -247,7 +267,7 @@ class Transitions:
 
         i = 1
 
-        while i < 3:  # Fix
+        while True:  # Fix
             print("\n\nStep", i)
             self.make_transition()
             i += 1
