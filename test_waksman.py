@@ -30,15 +30,15 @@ class Transitions:
             "R, Q",
             "Q, R",
             "R, B",
-            "R, A", #
+            "R, A1", #
             "A0, R", #
             "B, Q",
             "Q, B",
             "B, B"
             )
         q_to_r = (
-            "B, A",
-            "Q, A",
+            "B, A1",
+            "Q, A1",
             "B, R",
             "Q, R",
             "A0, B"
@@ -46,17 +46,21 @@ class Transitions:
         q_to_a = (
             "P, Q",
             "Q, P",
-            "A, Q",
-            # "B, A",
-            # "A, B",
-            # "R, A",
+            "A1, Q",
+            # "B, A1",
+            # "A1, B",
+            # "R, A1",
             "R, P"
         )
         q_to_a0 = (
             "R, P",
-            "R, A0"
+            "R, A0",
+            "A0, Q"  # TEST
         )
-        q_transition_rules = {q_to_q: "Q", q_to_r: "R", q_to_a: "A", q_to_a0: "A0"}
+        q_to_p = (
+            "B, A0"  # TEST
+        )
+        q_transition_rules = {q_to_q: "Q", q_to_r: "R", q_to_a: "A1", q_to_a0: "A0", q_to_p: "P"}
 
         return q_transition_rules
     
@@ -70,8 +74,10 @@ class Transitions:
             "P, B",
             # "Q, B",
             "B, P",
-            "P, A",
-            "A, P"
+            "P, A1",
+            "A1, P",
+            "A0, P",  # TEST
+            "Q, P"  # TEST
         )
         r_transition_rules = {r_to_q: "Q", r_to_b: "B"}
 
@@ -104,21 +110,28 @@ class Transitions:
             "Q, B",
             "B, Q",
             "Q, Q",
-            "A, B",
+            "A1, B",
         )
         a0_to_b = (
             "Q, P"
         )
-        ao_to_p = (
+        a0_to_p = (
             "R, B"
         )
-        a0_transition_rules = {a0_to_q: "Q", a0_to_b: "B", ao_to_p: "P"}
+        a0_to_r = (
+            "B, P"
+        )
+        a0_to_p = (
+            "Q, R"
+        )
+
+        a0_transition_rules = {a0_to_q: "Q", a0_to_b: "B", a0_to_p: "P", a0_to_r: "R", a0_to_p: "P"}
 
         return a0_transition_rules
     
     def b_rules(self):
         b_to_b = (
-            "P, A", 
+            "P, A1", 
             "A0, P",
             "Q, P",
             "P, Q",
@@ -136,22 +149,36 @@ class Transitions:
         )
         b_to_p = (
             "P, P",
-            "B, A",
-            "Q, A",
-            "A, B"
+            "B, A1",
+            "R, A0", #
+            "A1, B",
+            "A1, P"  # TEST
         )
         b_to_q = (
             "B, R"
         )
-        b_transition_rules = {b_to_b: "B", b_to_r: "R", b_to_p: "P", b_to_q: "Q"}
+        b_to_a0 = (
+            "Q, A0" # TEST
+        )
+        b_transition_rules = {b_to_b: "B", b_to_r: "R", b_to_p: "P", b_to_q: "Q", b_to_a0: "A0"}
 
         return b_transition_rules
     
     def p_rules(self):
-        p_to_t = [
+        p_to_t = (
             "P, P"
-        ]
-        p_transition_rules = {p_to_t: "T"}
+        )
+        p_to_p = (
+            "Q, Q",
+            "A1, A0",
+            "R, R",
+            "B, B",
+            "B, P",
+            "P, B",
+            "A0, A1",  # TEST
+            "R, B"  # TEST
+        )
+        p_transition_rules = {p_to_t: "T", p_to_p: "P"}
 
         return p_transition_rules
 
@@ -174,7 +201,7 @@ class Transitions:
 
     def rightmost_transition(self, cell, cell_left):
         """ (cell, cell_left) """
-        if (cell == "Q" and cell_left == "A"):
+        if (cell == "Q" and cell_left == "A1"):
             next_state = "P"
         elif (cell == "P" and cell_left == "P"):
             next_state = "P"
@@ -197,7 +224,7 @@ class Transitions:
             transition_rules = self.q_rules()
         elif cell == "R":
             transition_rules = self.r_rules()
-        elif cell == "A":
+        elif cell == "A1":
             transition_rules = self.a_rules()
         elif cell == "A0":
             transition_rules = self.a0_rules()
