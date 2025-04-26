@@ -53,7 +53,7 @@ class Transitions:
             "Q, P",
             "A1, Q",
             # "B, A1",
-            # "A1, B",
+            "A1, B", #
             # "R, A1",
             "R, P"
         )
@@ -91,7 +91,8 @@ class Transitions:
     def r1_rules(self):
         r1_to_b = (
             "Q, B",
-            "A0, P"
+            "A0, P",
+            "B, P"
         )
         r1_transition_rules = {r1_to_b: "B"}
 
@@ -113,7 +114,8 @@ class Transitions:
         )
         a_to_p = (
             "B, R",
-            "R, B"
+            "R, B",
+            "B, B"
         )
         a_transition_rules = {a_to_q: "Q", a_to_r: "R", a_to_b: "B", a_to_p: "P"}
 
@@ -130,16 +132,20 @@ class Transitions:
             "Q, P"
         )
         a0_to_p = (
-            "R, B"
+            "R, B",
+            "Q, R1" #
         )
         a0_to_r = (
+            "B, P",
+        )
+        a0_to_r1 = (
             "B, P"
         )
         a0_to_p = (
-            "Q, R"
+            "Q, R1"
         )
 
-        a0_transition_rules = {a0_to_q: "Q", a0_to_b: "B", a0_to_p: "P", a0_to_r: "R", a0_to_p: "P"}
+        a0_transition_rules = {a0_to_q: "Q", a0_to_b: "B", a0_to_p: "P", a0_to_r: "R", a0_to_r1: "R1", a0_to_p: "P"}
 
         return a0_transition_rules
     
@@ -154,11 +160,12 @@ class Transitions:
             "Q, B",
             "B, P",
             "P, B",
-            "Q, Q"
+            "Q, Q",
+            "Q, R1" #
         )
         b_to_r = (
             "P, R",
-            # "Q, R",
+            "Q, R",
             "R, P"
         )
         b_to_r1 = (
@@ -173,7 +180,7 @@ class Transitions:
         )
         b_to_q = (
             "B, R",
-            "Q, R"
+            #"Q, R" 
         )
         b_to_a0 = (
             "Q, A0" # TEST
@@ -190,6 +197,8 @@ class Transitions:
             "Q, Q",
             "A1, A0",
             "R, R",
+            "R1, R", #
+            "R1, B",
             "B, B",
             "B, P",
             "P, B",
@@ -222,7 +231,7 @@ class Transitions:
         if (cell == "Q" and cell_left == "A1"):
             next_state = "P"
         elif (cell == "P" and cell_left == "P"):
-            next_state = "P"
+            next_state = "T"
         else:
             next_state = cell
         
@@ -306,10 +315,10 @@ class Transitions:
         print("Checking Finality")
         if (state != "T" for state in self.next_states):
             print("Cell fired early. Quitting now.")
-            quit() 
+            self.output() 
         else:
             print("All cells fired simultaneouly")
-            return True
+            self.output() 
 
     def run(self):
         self.give_fire_command()

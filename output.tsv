@@ -8,7 +8,13 @@
 8	P	B	Q	B	Q	Q	R	Q	A1	Q	Q	
 9	P	B	Q	B	Q	R	Q	Q	Q	A1	Q	
 10	P	B	Q	B	R	Q	Q	Q	R	Q	P	
-11	P	B	Q	Q	B	Q	Q	R	Q	A0	P	
-12	P	B	Q	Q	B	Q	R	Q	A0	B	P	
-13	P	B	Q	Q	B	R	Q	A0	Q	B	P	
-14	P	B	Q	Q	Q	B	A0	Q	R1	B	P	
+11	P	B	Q	R	B	Q	Q	R	Q	A0	P	
+12	P	B	R	Q	B	Q	R	Q	A0	B	P	
+13	P	R	B	Q	B	R	Q	A0	Q	B	P	
+14	P	B	B	Q	R	B	A0	Q	R1	B	P	
+15	P	B	B	R	Q	P	Q	Q	B	R1	P	
+16	P	B	Q	B	A0	P	A1	Q	B	B	P	
+17	P	B	Q	A0	R1	P	B	A1	B	B	P	
+18	P	B	P	P	B	P	B	P	P	B	P	
+19	P	P	P	P	P	P	P	P	P	P	P	
+20	T	T	T	T	T	T	T	T	T	T	T	
