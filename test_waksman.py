@@ -30,8 +30,8 @@ class Transitions:
             "R, Q",
             "Q, R",
             "R, B",
-            # "R, A",
-            "A0, R",
+            "R, A", #
+            "A0, R", #
             "B, Q",
             "Q, B",
             "B, B"
@@ -41,7 +41,7 @@ class Transitions:
             "Q, A",
             "B, R",
             "Q, R",
-            "A, B"
+            "A0, B"
             )
         q_to_a = (
             "P, Q",
@@ -49,7 +49,7 @@ class Transitions:
             "A, Q",
             # "B, A",
             # "A, B",
-            "R, A",
+            # "R, A",
             "R, P"
         )
         q_to_a0 = (
@@ -68,7 +68,7 @@ class Transitions:
         r_to_b = (
             "B, Q",
             "P, B",
-            "Q, B",
+            # "Q, B",
             "B, P",
             "P, A",
             "A, P"
@@ -119,7 +119,7 @@ class Transitions:
     def b_rules(self):
         b_to_b = (
             "P, A", 
-            "A, P",
+            "A0, P",
             "Q, P",
             "P, Q",
             "R, Q",
@@ -140,7 +140,10 @@ class Transitions:
             "Q, A",
             "A, B"
         )
-        b_transition_rules = {b_to_b: "B", b_to_r: "R", b_to_p: "P"}
+        b_to_q = (
+            "B, R"
+        )
+        b_transition_rules = {b_to_b: "B", b_to_r: "R", b_to_p: "P", b_to_q: "Q"}
 
         return b_transition_rules
     
@@ -163,19 +166,20 @@ class Transitions:
         if cell_right == "P":
             next_state = "T"
         else:
-            next_state = "P"
+            next_state = cell
         
         print(f"Leftmost transition:\nCurrent State: {cell}\t{rule} => {next_state}")
 
         return next_state
 
     def rightmost_transition(self, cell, cell_left):
+        """ (cell, cell_left) """
         if (cell == "Q" and cell_left == "A"):
-            next_state = "A"
+            next_state = "P"
         elif (cell == "P" and cell_left == "P"):
             next_state = "P"
         else:
-            next_state = "Q"
+            next_state = cell
         
         print(f"\nRightmost transition:\nCurrent State: {cell}\t({cell_left}, {cell}) => {next_state}")
 
@@ -243,7 +247,7 @@ class Transitions:
             self.next_states[i] = next_state
         
         # Set rightmost state last
-        self.next_states[-1] = self.rightmost_transition(self.current_states[-2], self.current_states[-1])
+        self.next_states[-1] = self.rightmost_transition(self.current_states[-1], self.current_states[-2])
 
         print("Current States:", self.current_states)
         print("Next States:", self.next_states)
