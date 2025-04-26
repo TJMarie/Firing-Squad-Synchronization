@@ -111,7 +111,7 @@ class Transitions:
         ao_to_p = (
             "R, B"
         )
-        a0_transition_rules = {a0_to_q: "Q", a0_to_b: "b", ao_to_p: "p"}
+        a0_transition_rules = {a0_to_q: "Q", a0_to_b: "B", ao_to_p: "P"}
 
         return a0_transition_rules
     
