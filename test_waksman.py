@@ -251,6 +251,7 @@ class Transitions:
         if next_state == False:
             print(f"Error: Could not find rule ({rule})")
             print(self.chart)
+            self.output()
             quit()
 
         print(rule, "=>", next_state)
@@ -310,6 +311,10 @@ class Transitions:
 
             self.chart += f"{str(i)}\t{row}\n"
             i += 1
+
+    def output(self):
+        output_file = open("output.tsv", "w")
+        output_file.write(self.chart)
 
 def __main__():
     """ current_states --> List() """
