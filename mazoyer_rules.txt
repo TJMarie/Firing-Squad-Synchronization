@@ -30,6 +30,8 @@ where U and W are A, B, or C, and V is B or C
 (S, A, L) => A      (S, B, L) => B      (S, C, L) => C
 (the last three are in fact useless)
 
+===========================================================================
+
 pg. 198
 4.3. Replacing S by L in all previous rules (1) to (7) gets a compatible set of rules.
 This permits to eliminate state S in profit of L:
@@ -137,3 +139,6 @@ pg.204
 (G, R, G) => G 
 (H, L, G) => G      (H, H, G) => G 
 (G, L, G) => G 
+
+pg. 205
+(G, G, G) => F      (X, G, G) => F      (G, G, X) => F 

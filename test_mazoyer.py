@@ -3,18 +3,21 @@
 import copy
 
 class Transitions:
-    """ Transition Functions
+    """ Transition Rules
+
+        States:
         L --> Quiescent State
         F --> Final State
         A
         B
         C
-        S
-        .
+        G
+        H
+        R
 
-        (U, V) --> T
-        U == state of left cell at time t
-        V == state of right cell at time t
+        (U, V) --> T, where
+        U == state of left cell at time t,
+        V == state of right cell at time t,
         T == state of particular cell at time t + 1
     """
 
