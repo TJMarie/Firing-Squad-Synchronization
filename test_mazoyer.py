@@ -4,16 +4,17 @@ import copy
 
 class Transitions:
     """ Transition Functions
-        Q --> Quiescent State
-        T --> Final State
-        R --> Triggers B State
-        B --> Generates P State
-        A --> Propagates
-        P --> Generates A State, Leads to Final State
+        L --> Quiescent State
+        F --> Final State
+        A
+        B
+        C
+        S
+        .
 
         (U, V) --> T
-        U == current state of left cell
-        V == current state of right cell
+        U == state of left cell at time t
+        V == state of right cell at time t
         T == state of particular cell at time t + 1
     """
 

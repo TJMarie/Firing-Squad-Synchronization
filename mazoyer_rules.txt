@@ -1,0 +1,63 @@
+TRANSITION RULES
+pg. 196
+
+(1)
+(A, S, S) => B  (B, S, S) => C  (C, S, S) => A
+
+(2)
+(A, A, S) => A      (B, B, S) => B      (C, C, S) => C
+(C, A, S) => A      (A, B, S) => B      (B, C, S) => C
+(S, A, S) => A      (S, B, S) => B      (S, C, S) => C
+
+(3)
+(i)     (A, A, B) => B      (B, B, C) => C      (C, C, A) => A
+(ii)    (A, B, B) => B      (B, C, C) => C      (C, A, A) => A
+        (B, B, B) => B      (C, C, C) => C      (A, A, A) => A
+
+pg. 197
+
+(4)
+(S, A, B) => S      (S, B, C) => S      (S, C, A) => A
+(5)
+(S, A, A) => A      (S, B, B) => B      (S, C, C) => C
+(6)
+(S, S, V) => S      (U, S, W) => S
+where U and W are A, B, or C, and V is B or C
+
+(7)
+(A, L, L) => B      (B, L, L) => C      (C, L, L) => A
+(A, B, L) => B      (B, C, L) => C      (C, A, L) => A 
+(S, A, L) => A      (S, B, L) => B      (S, C, L) => C
+(the last three are in fact useless)
+
+pg. 198
+Replacing S by L in all previous rules (1) to (7) gets a compatible set of rules.
+This permits to eliminate state S in profit of L:
+
+(1)
+(A, L, L) => B  (B, L, L) => C  (C, L, L) => A
+
+(2)
+(A, A, L) => A      (B, B, L) => B      (C, C, L) => C
+(C, A, L) => A      (A, B, L) => B      (B, C, L) => C
+(L, A, L) => A      (L, B, L) => B      (L, C, L) => C
+
+(3)
+(i)     (A, A, B) => B      (B, B, C) => C      (C, C, A) => A
+(ii)    (A, B, B) => B      (B, C, C) => C      (C, A, A) => A
+        (B, B, B) => B      (C, C, C) => C      (A, A, A) => A
+
+(4)
+(L, A, B) => L      (L, B, C) => L      (L, C, A) => A
+(5)
+(L, A, A) => A      (L, B, B) => B      (L, C, C) => C
+(6)
+(L, L, V) => L      (U, L, W) => L
+where U and W are A, B, or C, and V is B or C
+
+(7)
+(A, L, L) => B      (B, L, L) => C      (C, L, L) => A
+(A, B, L) => B      (B, C, L) => C      (C, A, L) => A 
+(L, A, L) => A      (L, B, L) => B      (L, C, L) => C
+(the last three are in fact useless)
+
