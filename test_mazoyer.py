@@ -161,7 +161,7 @@ def __main__():
     """ current_states --> List() """
     print("Starting Program")
 
-    for i in range(2, 150):
+    for i in range(1000, 1001):
         print(f"\nRun {i - 1}")
         num_cells = i
         current_states = ["L" for j in range(num_cells)]
