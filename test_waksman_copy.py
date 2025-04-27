@@ -26,161 +26,287 @@ class Transitions:
 
     def q_rules(self):
         q_to_q = (
+            "Q, A011",
+            "Q, A110",
+            "Q, A111",
+            "B, A011",
+            "B, A110",
+            "B, A111",
+            "R0, A010",
+            "R0, A011",
+            "R0, A110",
+            "R0, A111",
+
+            "A001, Q",
+            "A001, B",
+            "A001, R1",
+            "A100, Q",
+            "A100, B",
+            "A101, Q",
+            "A101, B",
             "Q, Q",
-            "R, Q",
-            "Q, R",
-            "R, B",
-            "R, A1", #
-            "A0, R", #
-            "B, Q",
             "Q, B",
-            "B, B"
+            "Q, R1",
+
+            "B, Q",
+            "B, B",
+            "B, R1",
+            "B, P0",
+            "B, P1",
+            "R0, Q",
+            "R0, B",
+            "R0, Y",
+            "P0, B",
+            "P0, R1",
+            "P1, B",
+            "P1, R1"
             )
-        q_to_r = (
-            "B, A1",
-            "Q, A1",
-            "B, R",
-            "Q, R",
-            "A0, B"
+        q_to_a000 = (
+            "Q, A001",
+            "B, A001",
+            "R0, A001",
+            "R1, A001",
+
+            "Q, P0",
+            "Y, P0",
+
+            "R0, P0"
+        )
+        q_to_a001 = (
+            "Q, A000",
+            "B, A000",
+            "R0, A000",
+            "R1, A000"
+        )
+        q_to_a010 = (
+            "A011, Q",
+            "A011, B",
+
+            "P0, Q"
+        )
+        q_to_a011 = (
+            "A010, Q",
+            "A010, B"
+        )
+        q_to_a100 = (
+            "Q, A101",
+            "B, A101",
+            "R0, A101",
+            "R1, A101",
+
+            "Q, P1"
+        )
+        q_to_a101 = (
+            "Q, A100",
+            "B, A100",
+            "R0, A100",
+            "R1, A100"
+        )
+        q_to_a110 = (
+            "A111, Q",
+            "A111, B",
+
+            "P1, Q"
+        )
+        q_to_a111 = (
+            "A110, Q",
+            "A110, B"
+        )
+        q_to_b0 = (
+            "P0, A011",
+            "P1, A110",
+
+            "A001, P0"
+        )
+        q_to_p0 = (
+            "Q, A000",
+            "Q, A100",
+
+            "A010, Q",
+            "A110, Q",
+
+            "P0, P0",
+            "P0, P1",
+            "P1, P0",
+            "P1, P1"
+        )
+        q_to_p1 = (
+            "Q, A001",
+            "Q, A101",
+
+            "A011, Q",
+            "A111, Q"
+        )
+        q_to_r0 = (
+            "Q, A010",
+            "B, A010",
+
+            "Q, R0",
+
+            "B, R0",
+            "P0, R0",
+            "P1, R0"
             )
-        q_to_a = (
-            "P, Q",
-            "Q, P",
-            "A1, Q",
-            # "B, A1",
-            # "A1, B",
-            # "R, A1",
-            "R, P"
+        q_to_r1 = (
+            "A000, Q",
+            "A000, B",
+
+            "R1, Q",
+            "R1, B",
+            "R1, P0",
+            "R1, P1"
         )
-        q_to_a0 = (
-            "R, P",
-            "R, A0",
-            "A0, Q"  # TEST
-        )
-        q_to_p = (
-            "B, A0"  # TEST
-        )
-        q_transition_rules = {q_to_q: "Q", q_to_r: "R", q_to_a: "A1", q_to_a0: "A0", q_to_p: "P"}
+        q_transition_rules = {
+            q_to_q: "Q", 
+            q_to_a000: "A000", 
+            q_to_a001: "A001", 
+            q_to_a010: "A010", 
+            q_to_a011: "A011", 
+            q_to_a100: "A100", 
+            q_to_a101: "A101", 
+            q_to_a110: "A110", 
+            q_to_a111: "A111", 
+            q_to_b0: "B0", 
+            q_to_p0: "P0", 
+            q_to_p1: "P1",
+            q_to_r0: "R0", 
+            q_to_r1: "R1"}
 
         return q_transition_rules
     
-    def r_rules(self):
-        r_to_q = (
-            "Q, Q",
-            "Q, B"
+    def b0_rules(self):
+        b0_to_b0 = (
+            "P, Y"
         )
-        r_to_b = (
-            "B, Q",
-            "P, B",
-            # "Q, B",
-            "B, P",
-            "P, A1",
-            "A1, P",
-            "A0, P",  # TEST
-            "Q, P"  # TEST
-        )
-        r_transition_rules = {r_to_q: "Q", r_to_b: "B"}
-
-        return r_transition_rules
-    
-    def a_rules(self):
-        a_to_q = (
-            "B, Q",
-            "Q, Q",
-            "Q, B"
-        )
-        a_to_r = (
-            "Q, P", 
-            "P, Q"
-        )
-        a_to_b = (
-            "P, Q",
-            "Q, P"
-        )
-        a_to_p = (
-            "B, R",
-            "R, B"
-        )
-        a_transition_rules = {a_to_q: "Q", a_to_r: "R", a_to_b: "B", a_to_p: "P"}
-
-        return a_transition_rules
-    
-    def a0_rules(self):
-        a0_to_q = (
-            "Q, B",
-            "B, Q",
-            "Q, Q",
-            "A1, B",
-        )
-        a0_to_b = (
-            "Q, P"
-        )
-        a0_to_p = (
-            "R, B"
-        )
-        a0_to_r = (
-            "B, P"
-        )
-        a0_to_p = (
-            "Q, R"
-        )
-
-        a0_transition_rules = {a0_to_q: "Q", a0_to_b: "B", a0_to_p: "P", a0_to_r: "R", a0_to_p: "P"}
-
-        return a0_transition_rules
-    
-    def b_rules(self):
-        b_to_b = (
-            "P, A1", 
-            "A0, P",
-            "Q, P",
-            "P, Q",
-            "R, Q",
-            "B, Q",
-            "Q, B",
-            "B, P",
-            "P, B",
-            "Q, Q"
-        )
-        b_to_r = (
-            "P, R",
-            "Q, R",
-            "R, P"
-        )
-        b_to_p = (
+        b0_to_p0 = (
+            "Y, A000",
+            "Y, A101",
             "P, P",
-            "B, A1",
-            "R, A0", #
-            "A1, B",
-            "A1, P"  # TEST
+            "A010, Y",
+            "A111, Y"
         )
-        b_to_q = (
-            "B, R"
+        b0_to_p1 = (
+            "Y, A100",
+            "Y, A001",
+            "A110, Y",
+            "A011, Y"
         )
-        b_to_a0 = (
-            "Q, A0" # TEST
+        b0_to_r0 = (
+            "Y, R0",
+            "P, R0"
         )
-        b_transition_rules = {b_to_b: "B", b_to_r: "R", b_to_p: "P", b_to_q: "Q", b_to_a0: "A0"}
+        b0_to_r1 = (
+            "R1, Y"
+        )
+        # Else B0
 
-        return b_transition_rules
+        b0_transition_rules = {
+            b0_to_b0: "B0",
+            b0_to_p0: "P0",
+            b0_to_p1: "P1",
+            b0_to_r0: "R0",
+            b0_to_r1: "R1"
+        }
+        return b0_transition_rules
     
-    def p_rules(self):
-        p_to_t = (
-            "P, P"
+    def b1_rules(self):
+        b1_to_q = (
+            "Y, R0",
+            "R1, Q"
         )
-        p_to_p = (
-            "Q, Q",
-            "A1, A0",
-            "R, R",
-            "B, B",
-            "B, P",
-            "P, B",
-            "A0, A1",  # TEST
-            "R, B"  # TEST
+        b1_to_p0 = (
+            "Y, A000",
+            "Y, A101",
+            "A010, Y",
+            "A111, Y",
+            "P0, P0",
+            "P0, P1",
+            "P1, P0",
+            "P1, P1"
         )
-        p_transition_rules = {p_to_t: "T", p_to_p: "P"}
+        b1_to_p1 = (
+            "Y, A100",
+            "Y, A001",
+            "A110, Y",
+            "A011, Y"
+        )
+        b1_transition_rules = {
+            b1_to_q: "Q",
+            b1_to_p0: "P0",
+            b1_to_p1: "P1"
+        }
+        return b1_transition_rules
+    
+    def r0_rules(self):
+        r0_to_b0 = (
+            "B1, Y",
+            "P0, Y",
+            "P1, Y"
+        )
+        r0_to_b1 = (
+            "B0, Y"
+        )
+        # Else Q
+        r0_transition_rules = {r0_to_b0: "B0", r0_to_b1: "B1"}
 
-        return p_transition_rules
+        return r0_transition_rules
+    
+    def r1_rules(self):
+        r1_to_b0 = (
+            "B1, Y",
+            "P0, Y",
+            "P1, Y"
+        )
+        r1_to_b1 = (
+            "B0, Y"
+        )
+        # Else Q
+        r1_transition_rules = {r1_to_b0: "B0", r1_to_b1: "B1"}
+
+        return r1_transition_rules
+    
+    def p0_rules(self):
+        p0_to_t = (
+            "P0, P0",
+            "P0, P1",
+            "P1, P0"
+        )
+        # Else P0
+
+        return {p0_to_t: "T"}
+    
+    def p1_rules(self):
+        p1_to_t = (
+            "P0, P0",
+            "P0, P1",
+            "P1, P0"
+        )
+        # Else P1
+
+        return {p1_to_t: "T"}
+    
+    def a000_rules(self):
+        a000_to_q = (
+            "Y, P0",
+            "Y, P1"
+        )
+        a000_to_b0 = (
+            "Y, P0"
+        )
+
+        return {a000_to_q: "Q", a000_to_b0: "B0"}
+    
+    def a001_rules(self):
+        return {("Y, Y"): "Q"}
+    
+    def a100_rules(self):
+        a100_to_p1 = (
+            "B0, Y",
+            "B1, Y"
+        )
+        a100_to_r1 = (
+            "Q, P1"
+        )
 
     def give_fire_command(self):
         print("Giving Fire command")
