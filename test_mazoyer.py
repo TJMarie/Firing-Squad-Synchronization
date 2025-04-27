@@ -30,9 +30,9 @@ class Transitions:
 
     def give_fire_command(self):
         print("Giving Fire command")
-        self.current_states[0] = "P"
+        self.current_states[0] = "G"
         print(self.current_states)
-    
+    '''
     def leftmost_transition(self, cell, cell_right):
         rule = f"({cell}, {cell_right})"
 
@@ -57,7 +57,7 @@ class Transitions:
         print(f"\nRightmost transition:\nCurrent State: {cell}\t({cell_left}, {cell}) => {next_state}")
 
         return next_state
-    
+    '''
     def middle_transition(self, cell_left, cell, cell_right, index):
         """ Transition Rules: Dict{List(String): String} """
 
@@ -65,6 +65,7 @@ class Transitions:
         rule = f"{cell_left}, {cell_right}"
         print(f"Current State:\t{cell}\t{str(index + 1)}")
         print("Rule:\t"+ rule)
+
 
         if cell == "Q":
             transition_rules = self.q_rules()
@@ -105,8 +106,9 @@ class Transitions:
             Create list of next states for all cells """
 
         #  Set leftmost state first
-        self.next_states[0] = self.leftmost_transition(self.current_states[0], self.current_states[1])
+        # self.next_states[0] = self.leftmost_transition(self.current_states[0], self.current_states[1])
 
+        self.next_states[0] = self.middle_transition("X", self.current_states[0], self.current_states[1])
 
         print("Number of loops", str(self.num_cells - 2))
         
@@ -118,7 +120,9 @@ class Transitions:
             self.next_states[i] = next_state
         
         # Set rightmost state last
-        self.next_states[-1] = self.rightmost_transition(self.current_states[-1], self.current_states[-2])
+        # self.next_states[-1] = self.rightmost_transition(self.current_states[-1], self.current_states[-2])
+
+        self.next_states[-1] = self.middle_transition(self.current_states[-2], self.current_states[-1], "X")
 
         print("Current States:", self.current_states)
         print("Next States:", self.next_states)
