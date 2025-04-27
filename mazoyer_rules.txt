@@ -87,11 +87,53 @@ pg. 200
 it is convenient to introduce an eigthth state, denoted R, to mark the end of the delay-tranmission process
 
 Delay 0:
+    (A, C, X) => R      (A, C, G) => R  
 
-(A, C, X) => R      (A, C, G) => R  
+    (A, C, R) => R 
 
-(A, C, R) => R 
+    (C, R, X) => L      (C, R, G) => L      (C, R, L) => L 
+    (R, L, X) => L      (R, L, G) => L      (R, L, L) => L 
+    (L, L, G) => L 
 
-(C, R, X) => L      (C, R, G) => L      (C, R, L) => L 
-(R, L, X) => L      (R, L, G) => L      (R, L, L) => L 
-(L, L, G) => L 
+Delay 1:
+    (B, A, X) => C      (B, A, G) => C 
+    (B, A, C) => C 
+
+Delay 2:
+    (C, B, X) => A      (C, B, G) => A 
+    (C, B, A) => A 
+
+4.6. it realizes that it has to become a general of a new line at time t + 1
+
+(L, A, C) => G      (L, B, A) => G      (L, C, B) => G 
+pg. 202
+(G, A, C) => C      (G, C, R) => R      (G, R, L) => H 
+
+4.7
+
+pg. 203
+(G, A, X) => C      (G, A, G) => C 
+(G, C, X) => R      (G, C, G) => R 
+
+4.8
+
+(L, G, A) => G      (L, G, R) => G 
+(R, G, R) => G      (A, G, R) => G 
+(A, G, C) => G      (B, G, R) => G 
+(B, G, C) => G      (C, G, R) => G 
+(C, G, C) => G      (L, G, C) => G 
+
+pg.204
+(A, G, L) => G      (B, G, L) => G      (C, G, L) => G 
+(R, G, L) => G      (L, G, L) => G      (A, G, H) => G 
+(B, G, H) => G      (C, G, H) => G      (R, G, H) => G 
+(L, G, H) => G      (H, G, L) => G      (H, G, H) => G 
+
+4.9
+(G, L, X) => G 
+(H, L, X) => H      (G, H, H) => G      (H, H, X) => G 
+(G, R, X) => G 
+
+(G, R, G) => G 
+(H, L, G) => G      (H, H, G) => G 
+(G, L, G) => G 
