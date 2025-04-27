@@ -31,7 +31,7 @@ where U and W are A, B, or C, and V is B or C
 (the last three are in fact useless)
 
 pg. 198
-Replacing S by L in all previous rules (1) to (7) gets a compatible set of rules.
+4.3. Replacing S by L in all previous rules (1) to (7) gets a compatible set of rules.
 This permits to eliminate state S in profit of L:
 
 (1)
@@ -61,3 +61,37 @@ where U and W are A, B, or C, and V is B or C
 (L, A, L) => A      (L, B, L) => B      (L, C, L) => C
 (the last three are in fact useless)
 
+4.4. We Introduce two states G and H:
+G marks all sites (1, t) for t >= 1
+H marks all sites (2, t) except those already marked by L 
+
+In order not to introduce new transition rules we attribute state A to all sites (3, t') 
+
+(8)
+(X, G, L) => G      (X, G, H) => G
+(G, L, L) => H      (G, H, L) => H
+(G, H, A) => L 
+(G, L, A) => L 
+(H, L, L) => A      (H, A, L) => A 
+(H, L, B) => L 
+
+pg. 199
+Up to the arrival of the reflection of the initial wave, any machine K stays in a particular state an even number of time units
+
+pg. 200
+(A, L, X) => C      (B, L, X) => A      (C, L, X) => B 
+(A, L, G) => C      (B, L, G) => A      (C, L, G) => B 
+
+(A, A, C) => C      (B, B, A) => A      (C, C, B) => B 
+
+it is convenient to introduce an eigthth state, denoted R, to mark the end of the delay-tranmission process
+
+Delay 0:
+
+(A, C, X) => R      (A, C, G) => R  
+
+(A, C, R) => R 
+
+(C, R, X) => L      (C, R, G) => L      (C, R, L) => L 
+(R, L, X) => L      (R, L, G) => L      (R, L, L) => L 
+(L, L, G) => L 
