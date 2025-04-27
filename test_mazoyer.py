@@ -63,7 +63,6 @@ class Transitions:
     def middle_transition(self, cell_left, cell, cell_right, index):
         """ Transition Rules: Dict{List(String): String} """
 
-        print("\nMiddle Transition")
         rule = f"{cell_left}, {cell_right}"
         print(f"Current State:\t{cell}\t{str(index + 1)}")
         print("Rule:\t"+ rule)
@@ -108,11 +107,9 @@ class Transitions:
             Create list of next states for all cells """
 
         #  Set leftmost state first
-        # self.next_states[0] = self.leftmost_transition(self.current_states[0], self.current_states[1])
-
         self.next_states[0] = self.middle_transition("X", self.current_states[0], self.current_states[1], 0)
 
-        print("Number of loops", str(self.num_cells - 2))
+        # print("Number of loops", str(self.num_cells - 2))
         
         for i in range(1, self.num_cells - 1):
             cell_left = self.current_states[i - 1]
@@ -122,8 +119,6 @@ class Transitions:
             self.next_states[i] = next_state
         
         # Set rightmost state last
-        # self.next_states[-1] = self.rightmost_transition(self.current_states[-1], self.current_states[-2])
-
         self.next_states[-1] = self.middle_transition(self.current_states[-2], self.current_states[-1], "X", self.num_cells)
 
         print("Current States:", self.current_states)
@@ -133,22 +128,24 @@ class Transitions:
     
     def check_final(self):
         """Return False if cell fired early, True if all cells fire simultaneously"""
+
         print("\nChecking Finality")
         for state in self.next_states:
             if state != "F":
                 print("Cell fired early. Quitting now.")
                 self.output() 
+
         print("All cells fired simultaneouly")
-        self.output() 
+        return True
 
     def run(self):
+        """ Complete an entire run """
+
         self.give_fire_command()
-
         print(f"Current States:\n{self.current_states}\nNext States:\n{self.next_states}")
-
         print("\nRun ")
 
-        i = 1
+        i = 1 
 
         while True:  # Fix
             print("\n\nStep", i)
@@ -160,11 +157,15 @@ class Transitions:
 
             self.chart += f"{str(i)}\t{row}\n"
 
+            finished = False
+            
             for state in self.next_states:
                 if (state == "F"):
                     #  If one cell reaches the final state, check if every cell is firing 
-                    self.check_final()
-                    # Add code to start next run if all cells fire
+                    finished = self.check_final()
+
+            if finished:
+                break
 
             i += 1
 
@@ -179,14 +180,18 @@ class Transitions:
 def __main__():
     """ current_states --> List() """
     print("Starting Program")
-    num_cells = 11
-    current_states = ["L" for i in range(num_cells)]
 
-    print("Starting states:", current_states)
+    for i in range(2, 15):
+        num_cells = i
+        current_states = ["L" for i in range(num_cells)]
 
-    rules = mazoyer_rules.Mazoyer()
+        print("Starting states:", current_states)
 
-    firing_squad = Transitions(current_states, rules)
-    firing_squad.run()
+        rules = mazoyer_rules.Mazoyer()
+
+        firing_squad = Transitions(current_states, rules)
+
+        print("Starting next run")
+        firing_squad.run()
 
 __main__()
