@@ -1,6 +1,7 @@
 # Source: https://cs.stanford.edu/people/eroberts/courses/soco/projects/2004-05/automata-theory/problem.html
 
 import copy
+import mazoyer_rules
 
 class Transitions:
     """ Transition Rules
@@ -21,12 +22,13 @@ class Transitions:
         T == state of particular cell at time t + 1
     """
 
-    def __init__(self, current_states):
+    def __init__(self, current_states, rules):
         """ current_states --> List(String) """
         self.current_states = copy.deepcopy(current_states)
         self.next_states = copy.deepcopy(current_states)
         self.num_cells = len(current_states)
         self.chart = ""
+        self.rules = rules
 
     def give_fire_command(self):
         print("Giving Fire command")
@@ -67,20 +69,20 @@ class Transitions:
         print("Rule:\t"+ rule)
 
 
-        if cell == "Q":
-            transition_rules = self.q_rules()
-        elif cell == "R":
-            transition_rules = self.r_rules()
-        elif cell == "R1":
-            transition_rules = self.r1_rules()
-        elif cell == "A1":
-            transition_rules = self.a_rules()
-        elif cell == "A0":
-            transition_rules = self.a0_rules()
+        if cell == "L":
+            transition_rules = self.rules.l_rules()
+        elif cell == "A":
+            transition_rules = self.rules.a_rules()
         elif cell == "B":
-            transition_rules = self.b_rules()
-        elif cell == "P":
-            transition_rules = self.p_rules()
+            transition_rules = self.rules.b_rules()
+        elif cell == "C":
+            transition_rules = self.rules.c_rules()
+        elif cell == "R":
+            transition_rules = self.rules.r_rules()
+        elif cell == "H":
+            transition_rules = self.rules.h_rules()
+        elif cell == "G":
+            transition_rules = self.rules.g_rules()
         else:
             print("Unknown State:", cell)
             self.output()
@@ -183,7 +185,9 @@ def __main__():
 
     print("Starting states:", current_states)
 
-    firing_squad = Transitions(current_states)
+    rules = mazoyer_rules.Mazoyer()
+
+    firing_squad = Transitions(current_states, rules)
     firing_squad.run()
 
 __main__()
