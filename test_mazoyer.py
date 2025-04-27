@@ -27,45 +27,23 @@ class Transitions:
         self.current_states = copy.deepcopy(current_states)
         self.next_states = copy.deepcopy(current_states)
         self.num_cells = len(current_states)
-        self.chart = ""
         self.rules = rules
+        self.chart = ""
+
+        for i in range(self.num_cells):
+            self.chart += f"\t{i + 1}"  # Header row
+
 
     def give_fire_command(self):
         print("Giving Fire command")
         self.current_states[0] = "G"
         print(self.current_states)
-    '''
-    def leftmost_transition(self, cell, cell_right):
-        rule = f"({cell}, {cell_right})"
-
-        if cell_right == "P":
-            next_state = "T"
-        else:
-            next_state = cell
         
-        print(f"Leftmost transition:\nCurrent State: {cell}\t{rule} => {next_state}")
-
-        return next_state
-
-    def rightmost_transition(self, cell, cell_left):
-        """ (cell, cell_left) """
-        if (cell == "Q" and cell_left == "A1"):
-            next_state = "P"
-        elif (cell == "P" and cell_left == "P"):
-            next_state = "T"
-        else:
-            next_state = cell
-        
-        print(f"\nRightmost transition:\nCurrent State: {cell}\t({cell_left}, {cell}) => {next_state}")
-
-        return next_state
-    '''
     def middle_transition(self, cell_left, cell, cell_right, index):
         """ Transition Rules: Dict{List(String): String} """
 
         rule = f"{cell_left}, {cell_right}"
-        print(f"Current State:\t{cell}\t{str(index + 1)}")
-        print("Rule:\t"+ rule)
+        print(f"{str(index + 1)}\t\t{cell}\t\t({rule})")
 
 
         if cell == "L":
@@ -99,7 +77,7 @@ class Transitions:
             print(f"Error: Could not find rule ({rule})")
             self.output()
 
-        print(rule, "=>", next_state)
+        # print(rule, "=>", next_state)
         return next_state
 
     def make_transition(self):
@@ -150,14 +128,14 @@ class Transitions:
         i = 1 
 
         while True:  # Fix
-            print("\n\nStep", i)
+            print(f"\nStep {i}\nidx\t\tstate\t\trule")
             self.make_transition()
 
             row = ""
             for state in self.next_states:
                 row += f"{state}\t"
 
-            self.chart += f"{str(i)}\t{row}\n"
+            self.chart += f"\n{str(i)}\t{row}"
 
             finished = False
             
@@ -174,7 +152,7 @@ class Transitions:
 
     def output(self):
         print(self.chart)
-        file_name = f"mazoyer_output{self.num_cells}.tsv"
+        file_name = f"MazoyerOutput/mazoyer_output{self.num_cells}.tsv"
         print(f"Outputting to {file_name}")
         output_file = open(file_name, "w")
         output_file.write(self.chart)
