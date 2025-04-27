@@ -108,8 +108,6 @@ class Transitions:
 
         #  Set leftmost state first
         self.next_states[0] = self.middle_transition("X", self.current_states[0], self.current_states[1], 0)
-
-        # print("Number of loops", str(self.num_cells - 2))
         
         for i in range(1, self.num_cells - 1):
             cell_left = self.current_states[i - 1]
@@ -119,23 +117,28 @@ class Transitions:
             self.next_states[i] = next_state
         
         # Set rightmost state last
-        self.next_states[-1] = self.middle_transition(self.current_states[-2], self.current_states[-1], "X", self.num_cells)
+        self.next_states[-1] = self.middle_transition(self.current_states[-2], self.current_states[-1], "X", self.num_cells - 1)
 
-        print("Current States:", self.current_states)
-        print("Next States:", self.next_states)
+        #print("Current States:", self.current_states)
+        #print("Next States:", self.next_states)
 
         self.current_states = copy.deepcopy(self.next_states)
     
     def check_final(self):
         """Return False if cell fired early, True if all cells fire simultaneously"""
 
+        print("Current States:", self.current_states)
+        print("Next States:", self.next_states)
+
         print("\nChecking Finality")
         for state in self.next_states:
             if state != "F":
                 print("Cell fired early. Quitting now.")
                 self.output() 
+                quit()
 
         print("All cells fired simultaneouly")
+        self.output() 
         return True
 
     def run(self):
@@ -143,7 +146,6 @@ class Transitions:
 
         self.give_fire_command()
         print(f"Current States:\n{self.current_states}\nNext States:\n{self.next_states}")
-        print("\nRun ")
 
         i = 1 
 
@@ -163,6 +165,7 @@ class Transitions:
                 if (state == "F"):
                     #  If one cell reaches the final state, check if every cell is firing 
                     finished = self.check_final()
+                    break
 
             if finished:
                 break
@@ -175,15 +178,15 @@ class Transitions:
         print(f"Outputting to {file_name}")
         output_file = open(file_name, "w")
         output_file.write(self.chart)
-        quit()
 
 def __main__():
     """ current_states --> List() """
     print("Starting Program")
 
     for i in range(2, 15):
+        print(f"\nRun {i - 1}")
         num_cells = i
-        current_states = ["L" for i in range(num_cells)]
+        current_states = ["L" for j in range(num_cells)]
 
         print("Starting states:", current_states)
 
