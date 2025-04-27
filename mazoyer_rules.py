@@ -82,7 +82,30 @@ class Mazoyer:
         return a_transition_rules
     
     def b_rules(self):
-        b_transition_rules = {}
+        b_to_l = (
+            "L, C"
+        )
+        b_to_a = (
+            "B, A",
+            "C, X",
+            "C, A",
+            "C, G"
+        )
+        b_to_b = (
+            "L, L",
+            "L, B",
+            "A, L",
+            "A, B",
+            "B, L",
+            "B, B"
+        )
+        b_to_c = (
+            "B, C"
+        )
+        b_to_g = (
+            "L, A"
+        )
+        b_transition_rules = {b_to_l: "L", b_to_a: "A", b_to_b: "B", b_to_c: "C", b_to_g: "G"}
         return b_transition_rules
     
     def c_rules(self):
