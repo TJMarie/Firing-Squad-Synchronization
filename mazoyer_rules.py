@@ -10,44 +10,35 @@ class Mazoyer:
             "A, A",
             "A, B",
             "A, C",
+            "B, X",
+            "B, L",
             "B, A",
             "B, B",
             "B, C",
+            "B, G",
             "C, A",
             "C, B",
-            "B, C",
-            "R, X",
-            "R, L",
-            "R, G",
-            "H, B",
-            "G, A"
+            "C, C",
+            "G, A",
+            "G, B",
+            "G, C"
         )
         l_to_a = (
-            "B, G",
             "C, L",
-            "H, L"
-        )
-        l_to_b = (
-            "A, L",
-            "C, X",
-            "C, G"
+            "G, G"
         )
         l_to_c = (
             "A, X",
             "A, G",
-            "B, L"
-        )
-        l_to_h = (
-            "H, X",
-            "H, G",
             "G, L"
         )
         l_to_g = (
-            "G, X", 
-            "G, G"
+            "A, L",
+            "C, X", 
+            "C, G"
         )
 
-        l_transition_rules = {l_to_l: "L", l_to_a: "A", l_to_b: "B", l_to_c: "C", l_to_h: "H", l_to_g: "G"}
+        l_transition_rules = {l_to_l: "L", l_to_a: "A", l_to_c: "C", l_to_g: "G"}
         return l_transition_rules
     
     def a_rules(self):
