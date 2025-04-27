@@ -1,10 +1,84 @@
 class Mazoyer:
     def l_rules(self):
-        l_transition_rules = {}
+        l_to_l = (
+            "X, L",
+            "L, X",
+            "L, L",
+            "L, B",
+            "L, C",
+            "L, G",
+            "A, A",
+            "A, B",
+            "A, C",
+            "B, A",
+            "B, B",
+            "B, C",
+            "C, A",
+            "C, B",
+            "B, C",
+            "R, X",
+            "R, L",
+            "R, G",
+            "H, B",
+            "G, A"
+        )
+        l_to_a = (
+            "B, G",
+            "C, L",
+            "H, L"
+        )
+        l_to_b = (
+            "A, L",
+            "C, X",
+            "C, G"
+        )
+        l_to_c = (
+            "A, X",
+            "A, G",
+            "B, L"
+        )
+        l_to_h = (
+            "H, X",
+            "H, G",
+            "G, L"
+        )
+        l_to_g = (
+            "G, X", 
+            "G, G"
+        )
+
+        l_transition_rules = {l_to_l: "L", l_to_a: "A", l_to_b: "B", l_to_c: "C", l_to_h: "H", l_to_g: "G"}
         return l_transition_rules
     
     def a_rules(self):
-        a_transition_rules = {}
+        a_to_l = (
+            "L, B"
+        )
+        a_to_a = (
+            "L, L",
+            "L, A",
+            "A, L",
+            "A, A",
+            "C, L",
+            "C, A",
+            "H, A"
+        )
+        a_to_b = (
+            "A, B"
+        )
+        a_to_c = (
+            "A, C",
+            "B, X",
+            "B, C",
+            "B, G",
+            "G, X",
+            "G, C",
+            "G, G"
+        )
+        a_to_g = (
+            "L, C"
+        )
+        a_transition_rules = {a_to_l: "L", a_to_a: "A", a_to_b: "B", a_to_c: "C", a_to_g: "G"}
         return a_transition_rules
     
     def b_rules(self):
