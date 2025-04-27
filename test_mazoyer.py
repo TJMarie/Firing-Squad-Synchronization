@@ -135,12 +135,11 @@ class Transitions:
         """Return False if cell fired early, True if all cells fire simultaneously"""
         print("\nChecking Finality")
         for state in self.next_states:
-            if state != "T":
+            if state != "F":
                 print("Cell fired early. Quitting now.")
                 self.output() 
-            else:
-                print("All cells fired simultaneouly")
-                self.output() 
+        print("All cells fired simultaneouly")
+        self.output() 
 
     def run(self):
         self.give_fire_command()
@@ -162,7 +161,7 @@ class Transitions:
             self.chart += f"{str(i)}\t{row}\n"
 
             for state in self.next_states:
-                if (state == "T"):
+                if (state == "F"):
                     #  If one cell reaches the final state, check if every cell is firing 
                     self.check_final()
                     # Add code to start next run if all cells fire

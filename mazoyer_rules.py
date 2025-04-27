@@ -25,6 +25,7 @@ class Mazoyer:
         )
         l_to_a = (
             "C, L",
+            "G, X",
             "G, G"
         )
         l_to_c = (
