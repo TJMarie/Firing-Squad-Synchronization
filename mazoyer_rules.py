@@ -100,7 +100,7 @@ class Mazoyer:
             "G, C"
         )
         b_to_c = (
-            "B, C"
+            "B, C",
             "G, L",
             "G, A"
         )

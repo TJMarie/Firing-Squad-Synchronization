@@ -110,7 +110,7 @@ class Transitions:
         #  Set leftmost state first
         # self.next_states[0] = self.leftmost_transition(self.current_states[0], self.current_states[1])
 
-        self.next_states[0] = self.middle_transition("X", self.current_states[0], self.current_states[1])
+        self.next_states[0] = self.middle_transition("X", self.current_states[0], self.current_states[1], 0)
 
         print("Number of loops", str(self.num_cells - 2))
         
@@ -124,7 +124,7 @@ class Transitions:
         # Set rightmost state last
         # self.next_states[-1] = self.rightmost_transition(self.current_states[-1], self.current_states[-2])
 
-        self.next_states[-1] = self.middle_transition(self.current_states[-2], self.current_states[-1], "X")
+        self.next_states[-1] = self.middle_transition(self.current_states[-2], self.current_states[-1], "X", self.num_cells)
 
         print("Current States:", self.current_states)
         print("Next States:", self.next_states)
@@ -171,7 +171,7 @@ class Transitions:
 
     def output(self):
         print(self.chart)
-        file_name = f"output{self.num_cells}.tsv"
+        file_name = f"mazoyer_output{self.num_cells}.tsv"
         print(f"Outputting to {file_name}")
         output_file = open(file_name, "w")
         output_file.write(self.chart)
@@ -181,7 +181,7 @@ def __main__():
     """ current_states --> List() """
     print("Starting Program")
     num_cells = 11
-    current_states = ["Q" for i in range(num_cells)]
+    current_states = ["L" for i in range(num_cells)]
 
     print("Starting states:", current_states)
 
