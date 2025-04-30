@@ -3,4 +3,4 @@
 
 <p>Transition rules are denoted in the format "U, V", where U is the state of the lefthand machine and V is the state of the righthand machine. Every transition rule is listed in mazoyer_rules.py, and a longer summary is outlined in mazoyer_rules.txt. The leftmost and rightmost machines make separate calls to the cell_transition method using a special state, X, denoting the absence of a machine on one side. All other machines are processed in a `for` loop.</p>
 
-<p>Carnegie Mellon wrote a program that verified Abraham Waksman's solution up to 50 soldiers. In the MazoyerOutput directory, you can find tsv files which verify all cases from 2 to 1000 cells. </p>
+<p>Researchers at the Carnegie Institute of Technology wrote a program that verified Abraham Waksman's solution up to 50 soldiers. In the MazoyerOutput directory, you can find tsv files which verify all cases from 2 to 1000 cells. </p>
